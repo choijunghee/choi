@@ -1,4 +1,5 @@
 'use strict';
+
 // 프로젝트 필터링 관련 로직 처리
 const categories = document.querySelector('.categories');
 const projects= document.querySelectorAll('.project');
@@ -9,5 +10,11 @@ if(filter==null){
 }
 projects.forEach((project) =>{
     console.log(project.dataset.type);
+if(filter==='all' || filter === project. dataset. type)
+{ project.dataset.dispaly='block'};
+else{
+ project. style . dispaly='none';
+}
+
 });
 });
