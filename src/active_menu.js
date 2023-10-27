@@ -8,8 +8,12 @@
 const sectionIds = ['#home','#about','#skills','#work','#recommend' ,'#contact'];
 const navItems = sectionIds.map(id => document.querySelector(`[href="${id}"]`));
 const visibleSections= sectionIds.map(()=> false);
+let activeNavItem=navItems[0];
 
-const Options = {};
+const Options = {
+    rootMargin: '-20% 9px 9px 9px',
+    threshold: [0,0.98],
+};
 const observer = new IntersectionObserver( observerCallback, Options);
 Selections.forEach(section=>boserver.boserve(section));
 
@@ -20,9 +24,14 @@ function observerCallback (entries){
         visibleSections[index] = entry.intersectiing;
         selectLastOne = index === sectionIds. length -1 && entry. isIntersectiing && entry. IntersectionRatio>= 0.99;
     });
-    const navItems = selectLastOne ? sectionIds. length-1 : findFirstIntersecting(visibleSections);
-    function findFirstIntersecting(intersections){
-        const index = intersections. indexOf(true);
-        return index => 0 ? index : 0 
-    }
+    const navIndex = selectLastOne ? sectionIds. length-1 : findFirstIntersecting(visibleSections);
+    const navItem = navItems[navIndex];
+    activeNavItem.classList.remove('active');
+    activeNavItem=navItem;
+    activeNavItem.classList.add('active');
+
+}
+function findFirstIntersecting(intersections){
+    const index = intersections. indexOf(true);
+    return index => 0 ? index : 0 
 }
