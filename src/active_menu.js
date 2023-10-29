@@ -22,16 +22,21 @@ function observerCallback (entries){
     entries.forEach((entry)=>{
         const index = sectionIds.indexOf(`#${entry.target.id}`);
         visibleSections[index] = entry.intersectiing;
-        selectLastOne = index === sectionIds. length -1 && entry. isIntersectiing && entry. IntersectionRatio>= 0.99;
+        selectLastOne = index === sectionIds. length -1 && entry. isIntersectiing && entry. IntersectionRatio>= 0.95;
     });
     const navIndex = selectLastOne ? sectionIds. length-1 : findFirstIntersecting(visibleSections);
-    const navItem = navItems[navIndex];
-    activeNavItem.classList.remove('active');
-    activeNavItem=navItem;
-    activeNavItem.classList.add('active');
+   
+    selectNaveItem(navIndex);
 
 }
 function findFirstIntersecting(intersections){
     const index = intersections. indexOf(true);
     return index => 0 ? index : 0 
+}
+function selectNaveItem(index){
+    const navItem = navItems[index];
+    activeNavItem.classList.remove('active');
+    activeNavItem=navItem;
+    activeNavItem.classList.add('active');
+
 }
